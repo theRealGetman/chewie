@@ -97,26 +97,23 @@ class _CupertinoControlsState extends State<CupertinoControls>
                 )
               else
                 _buildHitArea(),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  _buildTopBar(
-                    backgroundColor,
-                    iconColor,
-                    barHeight,
-                    buttonPadding,
-                  ),
-                  const Spacer(),
-                  if (_subtitleOn)
-                    Transform.translate(
-                      offset: Offset(
-                        0.0,
-                        notifier.hideStuff ? barHeight * 0.8 : 0.0,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    _buildTopBar(
+                        backgroundColor, iconColor, barHeight, buttonPadding),
+                    const Spacer(),
+                    if (_subtitleOn)
+                      Transform.translate(
+                        offset: Offset(
+                            0.0, notifier.hideStuff ? barHeight * 0.8 : 0.0),
+                        child: _buildSubtitles(chewieController.subtitle!),
                       ),
-                      child: _buildSubtitles(chewieController.subtitle!),
-                    ),
-                  _buildBottomBar(backgroundColor, iconColor, barHeight),
-                ],
+                    _buildBottomBar(backgroundColor, iconColor, barHeight),
+                  ],
+                ),
               ),
             ],
           ),
@@ -279,11 +276,7 @@ class _CupertinoControlsState extends State<CupertinoControls>
                           _buildRemaining(iconColor),
                           _buildSubtitleToggle(iconColor, barHeight),
                           if (chewieController.allowPlaybackSpeedChanging)
-                            _buildSpeedButton(controller, iconColor, barHeight),
-                          if (chewieController.additionalOptions != null &&
-                              chewieController
-                                  .additionalOptions!(context).isNotEmpty)
-                            _buildOptionsButton(iconColor, barHeight),
+                            const SizedBox(),
                         ],
                       ),
               ),
@@ -505,7 +498,7 @@ class _CupertinoControlsState extends State<CupertinoControls>
           right: 6.0,
         ),
         child: Icon(
-          CupertinoIcons.gobackward_15,
+          CupertinoIcons.gobackward,
           color: iconColor,
           size: 18.0,
         ),
@@ -527,7 +520,7 @@ class _CupertinoControlsState extends State<CupertinoControls>
           right: 8.0,
         ),
         child: Icon(
-          CupertinoIcons.goforward_15,
+          CupertinoIcons.goforward,
           color: iconColor,
           size: 18.0,
         ),
